@@ -13,8 +13,33 @@ class ViewController4: UIViewController , UIPageViewControllerDataSource{
     
     
     var pageViewController : UIPageViewController?
-    var pageTitles : Array<String> = ["God vs Man", "Cool Breeze", "Fire Sky"]
-    var pageImages : Array<String> = ["page1.png", "page2.png", "page3.png"]
+//    var pageTitles : Array<String> = ["God vs Man", "Cool Breeze", "Fire Sky"]
+//    var pageImages : Array<String> = ["page1.png", "page2.png", "page3.png"]
+    
+//
+//        var pageImages : Array<String> = [
+//            "http://media.ruebarue.com/photos/places/4902239969738752/1-museum-of-fine-arts-1.jpg",
+//            "http://media.ruebarue.com/photos/places/4902239969738752/1-museum-of-fine-arts-2.jpg",
+//            "http://media.ruebarue.com/photos/places/4902239969738752/1-museum-of-fine-arts-3.jpg"
+//        ]
+    
+    var pageTitles : Array<String> {
+        get{
+            return ["God vs Man", "Cool Breeze", "Fire Sky"]
+        }
+    }
+
+    
+     var pageImages : Array<String> {
+        get{
+            return [
+                "http://media.ruebarue.com/photos/places/4902239969738752/3-museum-of-fine-arts-3.jpg",
+                "http://media.ruebarue.com/photos/places/4902239969738752/2-museum-of-fine-arts-2.jpg",
+                "http://media.ruebarue.com/photos/places/4902239969738752/1-museum-of-fine-arts-1.jpg"
+            ]
+        }
+    }
+    
     var currentIndex : Int = 0
     
     
@@ -33,8 +58,9 @@ class ViewController4: UIViewController , UIPageViewControllerDataSource{
         
         let viewControllers : NSArray = [startingViewController]
         pageViewController!.setViewControllers(viewControllers as [AnyObject], direction: .Forward, animated: false, completion: nil)
-        pageViewController!.view.frame = CGRectMake(0, 0, view.frame.width, view.frame.size.height)
+        //pageViewController!.view.frame = CGRectMake(0, 0, view.frame.width, view.frame.size.height)
         
+        pageViewController!.view.frame = CGRectMake(0, 0, view.frame.width , view.frame.size.height )
         addChildViewController(pageViewController!)
         self.view.addSubview(pageViewController!.view)
         pageViewController!.didMoveToParentViewController(self)
