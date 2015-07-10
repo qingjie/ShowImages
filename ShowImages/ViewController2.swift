@@ -208,21 +208,59 @@ class ViewController2: UIViewController , MKMapViewDelegate , UIPageViewControll
         
     }
     func loadLbl2(){
-        lbl2.backgroundColor = UIColor.lightGrayColor()
-        lbl2.frame = CGRectMake(1.0, 565.0, screenWidth - 2.0 , 40.0)
-        self.scrollView.addSubview(lbl2)
+//        lbl2.backgroundColor = UIColor.lightGrayColor()
+//        lbl2.text = "3154161144"
+//        lbl2.font = UIFont(name: lbl2.font.fontName, size: 12)
+//        lbl2.frame = CGRectMake(1.0, 565.0, screenWidth - 2.0 , 40.0)
+//        
+//        let tapGesture = UITapGestureRecognizer(target: self, action: "klikPlay:")
+//        lbl2.addGestureRecognizer(tapGesture)
+//        self.scrollView.addGestureRecognizer(tapGesture)
+        
+        let btn2 = UIButton(frame: CGRectMake(1.0, 565.0, screenWidth - 2.0 , 40.0))
+        //btn3.layer.cornerRadius = 10  // get some fancy pantsy rounding
+        btn2.backgroundColor = UIColor.lightGrayColor()
+        btn2.setTitle("3154161144", forState: UIControlState.Normal)
+        btn2.titleLabel!.font =  UIFont(name: "Times New Roman", size: 12)
+        btn2.titleLabel?.text = "3154161144"
+        btn2.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
+        btn2.addTarget(self, action: "btnTouched:", forControlEvents: UIControlEvents.TouchUpInside)
+        //btn3.setImage(image, forState: .Normal)
+        self.scrollView.addSubview(btn2)
+        
         
     }
     func loadLbl3(){
-        lbl3.backgroundColor = UIColor.lightGrayColor()
-        lbl3.frame = CGRectMake(1.0, 606.0, screenWidth - 2.0 , 40.0)
-        self.scrollView.addSubview(lbl3)
+//        lbl3.backgroundColor = UIColor.lightGrayColor()
+//        lbl3.text = "http://www.google.com"
+//        lbl3.font = UIFont(name: lbl3.font.fontName, size: 12)
+//        lbl3.frame = CGRectMake(1.0, 606.0, screenWidth - 2.0 , 40.0)
+//        //self.scrollView.addSubview(lbl3)
+//        
+//        let tapGesture = UITapGestureRecognizer(target: self, action: "openBroswer:")
+//        lbl3.addGestureRecognizer(tapGesture)
+//        self.scrollView.addGestureRecognizer(tapGesture)
         
+        
+        
+        let btn3 = UIButton(frame: CGRectMake(1.0, 606.0, screenWidth - 2.0 , 40.0))
+        //btn3.layer.cornerRadius = 10  // get some fancy pantsy rounding
+        btn3.backgroundColor = UIColor.lightGrayColor()
+        btn3.setTitle("http://www.google.com", forState: UIControlState.Normal)
+        btn3.titleLabel?.text = "http://www.google.com"
+        btn3.titleLabel!.font =  UIFont(name: "Times New Roman", size: 12)
+        btn3.contentHorizontalAlignment = UIControlContentHorizontalAlignment.Left
+        btn3.addTarget(self, action: "btnTouched:", forControlEvents: UIControlEvents.TouchUpInside)
+        //btn3.setImage(image, forState: .Normal)
+        self.scrollView.addSubview(btn3)
+        //btn3.setBackgroundImage(image, forState: .Normal)
     }
     
     func loadLbl4(){
         lbl4.backgroundColor = UIColor.lightGrayColor()
         lbl4.frame = CGRectMake(1.0, 647.0, screenWidth - 2.0 , 40.0)
+        lbl4.text = "Open Today . 10:00 AM - 4:30 PM"
+        lbl4.font = UIFont(name: lbl4.font.fontName, size: 12)
         self.scrollView.addSubview(lbl4)
         
     }
@@ -230,6 +268,7 @@ class ViewController2: UIViewController , MKMapViewDelegate , UIPageViewControll
     func loadLbl5(){
         lbl5.backgroundColor = UIColor.lightGrayColor()
         lbl5.frame = CGRectMake(1.0, 688.0, screenWidth - 2.0 , 100.0)
+        lbl5.text = ""
         self.scrollView.addSubview(lbl5)
         
     }
@@ -339,7 +378,51 @@ class ViewController2: UIViewController , MKMapViewDelegate , UIPageViewControll
         return 0
     }
     
-        
+
+    func callNumber(phoneNumber:String) {
+        if let phoneCallURL:NSURL = NSURL(string:"tel://"+"\(phoneNumber)") {
+            let application:UIApplication = UIApplication.sharedApplication()
+            if (application.canOpenURL(phoneCallURL)) {
+                application.openURL(phoneCallURL);
+            }
+        }
+    }
     
+    func openURL(urlString:String){
+        if let checkURL = NSURL(string: urlString) {
+            if UIApplication.sharedApplication().openURL(checkURL) {
+                println("url successfully opened")
+            }
+        } else {
+            println("invalid url")
+        }
+    }
+    
+    
+    func btnTouched(sender: UIButton) {
+        println("You have chosen Villain: \(sender.titleLabel?.text)")
+        var strPhonenumber = "3154161144"
+        var strUrl = "http://www.google.com"
+        
+        if sender.titleLabel?.text != nil {
+            //println("You have chosen Villain: \(sender.titleLabel?.text)")
+            switch (sender.titleLabel?.text)! {
+                case strUrl:
+                    print("a \(strUrl)")
+                    openURL(strUrl)
+                case strPhonenumber:
+                    print("b \(strPhonenumber)")
+                    callNumber(strPhonenumber)
+                
+                default:break
+            }
+        } else {
+            println("Nowhere to go :/")
+            
+        }
+    }
+    
+    
+
     
 }
